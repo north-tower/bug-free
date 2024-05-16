@@ -15,12 +15,13 @@ import axios from 'axios';
 interface Expense {
   description: string;
   amount: string;
+  category: string;
 }
 
 
 function Orders() {
 
-  const [newExpense, setNewExpense] = useState<Expense>({ description: '', amount: '' });
+  const [newExpense, setNewExpense] = useState<Expense>({ description: '', amount: '' , category: ''});
 
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,8 +37,9 @@ function Orders() {
     try {
       await axios.post('https://supreme-goggles-beta.vercel.app/api/v1/addDriver', newExpense);
       // Display success message
-      window.alert('Driver added successfully');
+      window.alert('Expense added successfully');
       // Redirect to Drivers page
+      window.location.reload();
    
     } catch (error) {
       console.error('Error adding new driver:', error);
@@ -80,7 +82,11 @@ function Orders() {
                   <label className="mt-4 block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Assign Category</p>
                     <select className="w-full rounded-md border bg-white py-2 px-2 outline-none
-                     ring-blue-600 focus:ring-1" >
+                     ring-blue-600 focus:ring-1" 
+                     id="category"
+                     name="category"
+                     value={newExpense.category}
+                     onChange={handleInputChange} >
                       <option value="Marketing">Marketing</option>
                       <option value="Designing">Designing</option>
                     </select>
@@ -184,7 +190,7 @@ function Orders() {
               <thead className="hidden border-b lg:table-header-group">
                 <tr className="">
                   <td className="whitespace-normal py-4 text-sm font-semibold text-gray-800 sm:px-3">
-                    Order Date
+                    Date Posted
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="float-right mt-1 h-3 w-3"
@@ -202,7 +208,7 @@ function Orders() {
                   </td>
 
                   <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Order ID
+                    Expense ID
                   </td>
                   <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
                     Description
