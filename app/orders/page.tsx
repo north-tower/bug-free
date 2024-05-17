@@ -13,6 +13,7 @@ import axios from 'axios';
 
 
 interface Expense {
+  id: string;
   description: string;
   amount: string;
   category: string;
@@ -21,8 +22,8 @@ interface Expense {
 
 function Orders() {
 
-  const [newExpense, setNewExpense] = useState<Expense>({ description: '', amount: '' , category: ''});
-  const [data, setData] = useState(null);
+  const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '' , category: ''});
+  const [data, setData] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -49,24 +50,30 @@ function Orders() {
   };
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
-        const response = await fetch('/api');
+        const response = await fetch('/api'); // Adjust the URL as necessary
         if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        setData(result);
-        console.log(data);
-        setLoading(false);
-      } catch (err) {
-      
-        setLoading(false);
+        setNewExpense(result.data);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     }
+  
 
     fetchData();
   }, []);
+
+
+
+
+  useEffect(() => {
+    console.log(newExpense); // This will log whenever newExpense changes
+  }, [newExpense]);
 
   return (
     <>

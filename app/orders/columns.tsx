@@ -6,8 +6,9 @@ import { ColumnDef } from "@tanstack/react-table"
 // You can use a Zod schema here if you want.
 export type Payment = {
   id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
+  description: string
+  amount: string
+  status: string
   email: string
 }
 
