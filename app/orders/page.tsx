@@ -11,6 +11,8 @@ import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
+import { Payment, columns } from "./columns"
+import { DataTable } from "./data-table"
 
 interface Expense {
   id: string;
@@ -23,7 +25,7 @@ interface Expense {
 function Orders() {
 
   const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '' , category: ''});
-  const [data, setData] = useState('');
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -155,6 +157,10 @@ function Orders() {
           
           </nav>
         </div>
+        <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={newExpense} />
+    </div>
+        
       </div>
     
     </>

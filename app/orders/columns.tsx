@@ -14,6 +14,14 @@ export type Payment = {
 
 export const columns: ColumnDef<Payment>[] = [
   {
+    accessorKey: "id",
+    header: "Id",
+  },
+  {
+    accessorKey: "description",
+    header: "Description",
+  },
+  {
     accessorKey: "status",
     header: "Status",
   },
