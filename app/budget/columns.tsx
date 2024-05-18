@@ -47,7 +47,7 @@ export const columns: ColumnDef<Budget>[] = [
     accessorKey: "budget",
     header: () => <div className="text-right">Budget</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("budget"))
+      const budget = parseFloat(row.getValue("budget"))
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "KES",

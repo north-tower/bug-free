@@ -20,15 +20,33 @@ import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import {  columns } from "./columns"
 import { DataTable } from "./../orders/data-table"
 
-interface Expense {
+interface Category {
   id: string;
-  description: string;
-  amount: string;
-  category: string;
+  name: string;
+  budget: string;
 }
 
 function Budget() {
-  const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '' , category: ''});
+  const [newCategory, setNewCategory] = useState<Category>({id: '', name: '', budget: '' });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api2'); // Adjust the URL as necessary
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        setNewCategory(result.data);
+       
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+  
+
+    fetchData();
+  }, []);
   return (
     <div>
  <div className="mx-auto max-w-2xl bg-white">
@@ -69,7 +87,7 @@ function Budget() {
           </nav> */}
         </div>
         <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={newExpense} />
+      <DataTable columns={columns} data={newCategory} />
     </div>
         </div>
         
