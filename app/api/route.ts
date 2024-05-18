@@ -1,31 +1,30 @@
 import { Payment } from "../orders/columns";
 
-export const dynamic = 'force-dynamic' // defaults to auto
+
+export const dynamic = 'force-dynamic'; // defaults to auto
 
 interface OrdersProps {
     data: Payment[];
-  }
-  
+}
 
 async function getData(): Promise<Payment[]> {
-    // Fetch data from your API here.
-    return [
-      {
-        id: "728ed52f",
-        description: "qwerty",
-        amount: "100",
-        status: "pending",
-        email: "m@example.com",
-      },
-      // ...
-    ]
-  }
+    const url = 'https://supreme-goggles-beta.vercel.app/api/v1/getData'; // Replace with your API URL
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Failed to fetch data:', error);
+        return [];
+    }
+}
 
-
-  export async function GET() {
+export async function GET() {
     const data = await getData();
-   
-
-    return Response.json({ data })
-
-  }
+    return new Response(JSON.stringify({ data }), {
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
