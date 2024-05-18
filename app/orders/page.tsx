@@ -138,14 +138,16 @@ function Orders() {
               <div className="flex flex-col items-center px-8 py-10">
                   <label className="block w-full">
                     <p className="mb-1 text-sm text-gray-600">Enter Category Name</p>
-                    <input className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" type="text" placeholder="Enter Description" />
+                    <input className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" type="text" placeholder="Enter Category Name" />
+                  </label>
+                  <label className="block w-full">
+                    <p className="mb-1 text-sm text-gray-600">Enter Category Budget</p>
+                    <input className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" type="text" placeholder="Enter Category Budget" />
                   </label>
                  
                   <div className="mt-8 flex flex-col justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
                   <button className="whitespace-nowrap rounded-md bg-blue-500 px-4 py-3 font-medium text-white">Add Category</button>
-                  <Link href={"/"} >
-                  <button className="whitespace-nowrap rounded-md bg-gray-200 px-4 py-3 font-medium">Cancel Operation</button>
-                  </Link>
+                
                 </div>
 
               </div>
