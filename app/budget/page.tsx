@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Popover,
   PopoverContent,
@@ -12,8 +14,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+
+
+import {  columns } from "./columns"
+import { DataTable } from "./../orders/data-table"
+
+interface Expense {
+  id: string;
+  description: string;
+  amount: string;
+  category: string;
+}
 
 function Budget() {
+  const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '' , category: ''});
   return (
     <div>
  <div className="mx-auto max-w-2xl bg-white">
@@ -53,7 +68,9 @@ function Budget() {
             </Popover> 
           </nav> */}
         </div>
-        
+        <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={newExpense} />
+    </div>
         </div>
         
       </div>
