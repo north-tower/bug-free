@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Popover,
   PopoverContent,
@@ -12,11 +14,43 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
+import axios from 'axios';
 import Link from 'next/link';
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 
+interface Income {
+  id: string;
+  description: string;
+  amount: string;
+  category: string;
+}
 
 function Income() {
+  const [newIncome, setNewIncome] = useState<Income>({id: '', description: '', amount: '' , category: ''});
+
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      await axios.post('https://supreme-goggles-beta.vercel.app/api/v1/addIncome', newIncome);
+      // Display success message
+      window.alert('Expense added successfully');
+      // Redirect to Drivers page
+      window.location.reload();
+   
+    } catch (error) {
+      console.error('Error adding new driver:', error);
+    }
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewIncome(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
   return(
     <div>
        <div className="mx-auto max-w-2xl bg-white">
@@ -31,13 +65,25 @@ function Income() {
               <PopoverContent>
               <p className="mt-4 pl-4 text-xl font-bold">Add Income</p>
               <div className="flex flex-col items-center px-8 py-10">
+              <form onSubmit={handleSubmit}>
                   <label className="block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Description</p>
-                    <input className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" type="text" placeholder="Enter Description" />
+                    <input id="description"
+                    name="description"
+                    value={newIncome.description}
+                    onChange={handleInputChange}
+                    className="w-full rounded-md border bg-white py-2 px-2
+                     outline-none ring-blue-600 focus:ring-1" 
+                     placeholder="Enter Description" />
                   </label>
                   <label className="block w-full">
                     <p className="mb-1 text-sm text-gray-600">Enter Amount</p>
-                    <input className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" type="text" placeholder="Enter Amount" />
+                    <input   id="amount"
+                     name="amount"
+                     value={newIncome.amount}
+                     onChange={handleInputChange}
+                    className="w-full rounded-md border bg-white py-2 px-2 
+                    outline-none ring-blue-600 focus:ring-1"  placeholder="Enter Amount" />
                   </label>
                   <label className="mt-4 block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Assign Category</p>
@@ -48,10 +94,13 @@ function Income() {
                   </label>
                   <div className="mt-8 flex flex-col justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
                   <button className="whitespace-nowrap rounded-md bg-blue-500 px-4 py-3 font-medium text-white">Add Income</button>
-                  
+               
                 </div>
+              </form>
+
 
               </div>
+
               </PopoverContent>
             </Popover>
 
