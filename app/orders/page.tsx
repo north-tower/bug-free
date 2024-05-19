@@ -13,6 +13,14 @@ import axios from 'axios';
 
 import { Payment, columns } from "./columns"
 import { DataTable } from "./data-table"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 interface Expense {
   id: string;
@@ -163,7 +171,7 @@ function Orders() {
                   <label className="mt-4 block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Assign Category</p>
                     
-                    <select className="w-full rounded-md border bg-white py-2 px-2 outline-none
+                    {/* <select className="w-full rounded-md border bg-white py-2 px-2 outline-none
                      ring-blue-600 focus:ring-1" 
                      id="category"
                      name="category"
@@ -174,7 +182,18 @@ function Orders() {
 
                       <option value="categories.name">{categories.name}</option>
                     ))}
-                    </select>
+                    </select> */}
+                    <Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Theme" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="light">Light</SelectItem>
+    <SelectItem value="dark">Dark</SelectItem>
+    <SelectItem value="system">System</SelectItem>
+  </SelectContent>
+</Select>
+
                   </label>
                   <div className="mt-8 flex flex-col justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
                   <button type='submit' className="whitespace-nowrap rounded-md bg-blue-500 px-4 py-3 font-medium text-white">Add Expense</button>
