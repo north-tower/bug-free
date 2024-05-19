@@ -32,6 +32,9 @@ function Orders() {
 
   const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '' , category: ''});
   const [newCategory, setNewCategory] = useState<Category>({id: '', name: '', budget: ''});
+  const [newBudget, setNewBudget] = useState<Category>({id: '', name: '', budget: ''});
+
+  const [categories, setCategories] = useState<string[]>([]);
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -101,10 +104,28 @@ function Orders() {
 
 
 
-
   useEffect(() => {
-    console.log(newExpense); // This will log whenever newExpense changes
-  }, [newExpense]);
+    const fetchData2 = async () => {
+      try {
+        const response = await fetch('/api2'); // Adjust the URL as necessary
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        setCategories(result.data);
+       console.log(result.data[0].name)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+  
+
+    fetchData2();
+  }, []);
+
+
+
+  
 
   return (
     <>
@@ -141,14 +162,18 @@ function Orders() {
                   </label>
                   <label className="mt-4 block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Assign Category</p>
+                    
                     <select className="w-full rounded-md border bg-white py-2 px-2 outline-none
                      ring-blue-600 focus:ring-1" 
                      id="category"
                      name="category"
                      value={newExpense.category}
-                     onChange={handleInputChange} >
-                      <option value="Marketing">Marketing</option>
-                      <option value="Designing">Designing</option>
+                     onChange={handleInputChange} > 
+                     
+                     {categories.map((categories) => (
+
+                      <option value="categories.name">{categories.name}</option>
+                    ))}
                     </select>
                   </label>
                   <div className="mt-8 flex flex-col justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
