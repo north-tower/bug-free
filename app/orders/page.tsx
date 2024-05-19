@@ -171,7 +171,7 @@ function Orders() {
                   <label className="mt-4 block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Assign Category</p>
                     
-                    {/* <select className="w-full rounded-md border bg-white py-2 px-2 outline-none
+                  <select className="w-full rounded-md border bg-white py-2 px-2 outline-none
                      ring-blue-600 focus:ring-1" 
                      id="category"
                      name="category"
@@ -180,22 +180,22 @@ function Orders() {
                      
                      {categories.map((categories) => (
 
-                      <option value="categories.name">{categories.name}</option>
+                      <option key={category.name} value={categories.name}>{categories.name}</option>
                     ))}
-                    </select> */}
-                    <Select  
+                    </select> 
+                    {/* <Select  
                      name="category"
                      value={newExpense.category}
                      onChange={handleInputChange}>
                       <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Theme" />
+                        <SelectValue placeholder="Category" />
                       </SelectTrigger>
                       <SelectContent>
-                      {categories.map((categories) => (
-                        <SelectItem value="categories.name">{categories.name}</SelectItem>
+                      {categories.map((category) => (
+                        <SelectItem key={category.name} value={category.name}>{category.name}</SelectItem>
                       ))}
                       </SelectContent>
-                    </Select>
+                    </Select> */}
 
                   </label>
                   <div className="mt-8 flex flex-col justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
