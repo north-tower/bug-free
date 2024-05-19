@@ -180,7 +180,7 @@ function Orders() {
                      
                      {categories.map((categories) => (
 
-                      <option key={category.name} value={categories.name}>{categories.name}</option>
+                      <option key={categories.name} value={categories.name}>{categories.name}</option>
                     ))}
                     </select> 
                     {/* <Select  
