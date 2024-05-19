@@ -183,16 +183,19 @@ function Orders() {
                       <option value="categories.name">{categories.name}</option>
                     ))}
                     </select> */}
-                    <Select>
-  <SelectTrigger className="w-[180px]">
-    <SelectValue placeholder="Theme" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="light">Light</SelectItem>
-    <SelectItem value="dark">Dark</SelectItem>
-    <SelectItem value="system">System</SelectItem>
-  </SelectContent>
-</Select>
+                    <Select  
+                     name="category"
+                     value={newExpense.category}
+                     onChange={handleInputChange}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Theme" />
+                      </SelectTrigger>
+                      <SelectContent>
+                      {categories.map((categories) => (
+                        <SelectItem value="categories.name">{categories.name}</SelectItem>
+                      ))}
+                      </SelectContent>
+                    </Select>
 
                   </label>
                   <div className="mt-8 flex flex-col justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
