@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import Link from 'next/link';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { DataTable } from '../orders/data-table';
 
 interface Income {
 
@@ -134,7 +135,9 @@ function Income() {
           </nav>
         </div>
 
-       
+        <div className="container mx-auto py-10">
+      {/* <DataTable columns={columns} data={newExpense} /> */}
+    </div>
 
       </div>
     </div>
