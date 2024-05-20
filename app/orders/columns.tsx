@@ -115,21 +115,13 @@ export const columns: ColumnDef<Payment>[] = [
   onClick={async () => {
     try {
     
-      const baseUrl = "https://supreme-goggles-beta.vercel.app/api/v1/updateExpense";
-      const parameterValue = payment.id;
-      // Concatenate parameter to URL
-      const urlWithParameter = baseUrl + "?id=" + encodeURIComponent(parameterValue);
-
-console.log(urlWithParameter);
-
-
       // Perform the PUT request
       const response = await axios.put(`https://supreme-goggles-beta.vercel.app/api/v1/updateExpense/${payment.id}`);
 
 
       // Redirect to a new URL if the PUT request was successful
       console.log('Expense updated successfully');
-      window.location.href = 'https://your-redirect-url.com';
+      window.location.reload();
     } catch (error) {
       console.error('Failed to update expense:', error);
       alert('Failed to update expense. Please try again.');
@@ -137,14 +129,14 @@ console.log(urlWithParameter);
   }
   }
 >
-  Copy payment ID
+  Approve
 </DropdownMenuItem>
 
 
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            {/* <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>View payment details</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       )
