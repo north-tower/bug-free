@@ -15,6 +15,8 @@ import {
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
+import axios from 'axios';
+
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -110,10 +112,36 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
+  onClick={async () => {
+    try {
+    
+      const baseUrl = "https://supreme-goggles-beta.vercel.app/api/v1/updateExpense";
+      const parameterValue = payment.id;
+      // Concatenate parameter to URL
+      const urlWithParameter = baseUrl + "?id=" + encodeURIComponent(parameterValue);
+
+console.log(urlWithParameter);
+
+
+      // Perform the PUT request
+      const response = await axios.put(`https://supreme-goggles-beta.vercel.app/api/v1/updateExpense/${payment.id}`);
+
+
+      // Redirect to a new URL if the PUT request was successful
+      console.log('Expense updated successfully');
+      window.location.href = 'https://your-redirect-url.com';
+    } catch (error) {
+      console.error('Failed to update expense:', error);
+      alert('Failed to update expense. Please try again.');
+    }
+  }
+  }
+>
+  Copy payment ID
+</DropdownMenuItem>
+
+
+
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
