@@ -24,6 +24,7 @@ async function getData(): Promise<Payment[]> {
 
 export async function GET() {
     const data = await getData();
+    console.log(data)
     return new Response(JSON.stringify({ data }), {
         headers: { 'Content-Type': 'application/json' }
     });

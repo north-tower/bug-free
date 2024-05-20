@@ -137,7 +137,7 @@ function Orders() {
 
   return (
     <>
-      <div className="mx-auto max-w-4xl bg-white">
+      <div className="mx-auto max-w-6xl bg-white">
         <h1 className="mt-10  ml-5 text-2xl font-bold text-gray-900">
           Expense Management
         </h1>
