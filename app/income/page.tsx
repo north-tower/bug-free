@@ -19,14 +19,14 @@ import Link from 'next/link';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 
 interface Income {
-  id: string;
+
   description: string;
   amount: string;
   category: string;
 }
 
 function Income() {
-  const [newIncome, setNewIncome] = useState<Income>({id: '', description: '', amount: '' , category: ''});
+  const [newIncome, setNewIncome] = useState<Income>({ description: '', amount: '' , category: ''});
 
 
   const handleSubmit = async (e: FormEvent) => {
@@ -34,12 +34,12 @@ function Income() {
     try {
       await axios.post('https://supreme-goggles-beta.vercel.app/api/v1/addIncome', newIncome);
       // Display success message
-      window.alert('Expense added successfully');
+      window.alert('Income added successfully');
       // Redirect to Drivers page
       window.location.reload();
    
     } catch (error) {
-      console.error('Error adding new driver:', error);
+      console.error('Error adding new income:', error);
     }
   };
 
@@ -87,7 +87,12 @@ function Income() {
                   </label>
                   <label className="mt-4 block w-full" >
                     <p className="mb-1 text-sm text-gray-600">Assign Category</p>
-                    <select className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" >
+                    <select className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1" 
+                    id="category"
+                    name="category"
+                    value={newIncome.category}
+                    onChange={handleInputChange}
+                    >
                       <option value="Marketing">Marketing</option>
                       <option value="Designing">Designing</option>
                     </select>
@@ -129,25 +134,7 @@ function Income() {
           </nav>
         </div>
 
-        <Table>
-          <TableCaption>A list of your recent incomes.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Incomes</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-            </TableRow>
-          </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell className="font-medium">INV001</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell>Credit Card</TableCell>
-      <TableCell className="text-right">$250.00</TableCell>
-    </TableRow>
-  </TableBody>
-</Table>
+       
 
       </div>
     </div>
