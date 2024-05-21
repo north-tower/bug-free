@@ -11,23 +11,12 @@ import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
-import { Payment, columns } from "./columns"
+import { Expense,columns } from "./columns"
 import { DataTable } from "./data-table"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 
 
-interface Expense {
-  id: string;
-  description: string;
-  amount: string;
-  category: string;
-}
+
+
 
 interface Category {
   id: string;
@@ -38,7 +27,7 @@ interface Category {
 
 function Orders() {
 
-  const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '' , category: ''});
+  const [newExpense, setNewExpense] = useState<Expense>({id: '', description: '', amount: '',status:'' , category: '', email:''});
   const [newCategory, setNewCategory] = useState<Category>({id: '', name: '', budget: ''});
   const [newBudget, setNewBudget] = useState<Category>({id: '', name: '', budget: ''});
 
@@ -239,11 +228,7 @@ function Orders() {
 
               </div>
               </PopoverContent>
-            </Popover>
-
-            
-
-          
+            </Popover>          
           </nav>
         </div>
         <div className="container mx-auto py-10">

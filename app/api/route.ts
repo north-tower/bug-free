@@ -1,13 +1,13 @@
-import { Payment } from "../orders/columns";
+import { Expense } from "../orders/columns";
 
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
 interface OrdersProps {
-    data: Payment[];
+    data: Expense[];
 }
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<OrdersProps[]> {
     const url = 'https://supreme-goggles-beta.vercel.app/api/v1/getData'; // Replace with your API URL
     try {
         const response = await fetch(url);

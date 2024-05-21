@@ -1,4 +1,14 @@
 import Link from 'next/link';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
 
 function Header() {
   return (
@@ -44,6 +54,7 @@ function Header() {
                 </p>
               </li>
             </Link>
+            
             <Link href={'/income'} prefetch={false}>
               <li className="lg:mr-12">
                 <p className="rounded text-gray-700 transition focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2">

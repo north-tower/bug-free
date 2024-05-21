@@ -87,7 +87,7 @@ function Budget() {
           </nav> */}
         </div>
         <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={newCategory} />
+      {/* <DataTable columns={columns} data={newCategory} /> */}
     </div>
         </div>
         

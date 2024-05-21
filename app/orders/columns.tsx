@@ -1,8 +1,6 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-
- 
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,13 +12,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Badge } from "@/components/ui/badge"
 import axios from 'axios';
 
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
+export type Expense = {
   id: string
   description: string
   amount: string
@@ -29,7 +26,9 @@ export type Payment = {
   email: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
+
+
+export const columns: ColumnDef<Expense>[] = [
   {
     accessorKey: "id",
     header: "Id",
